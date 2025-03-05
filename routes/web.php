@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,11 @@ Route::get('/articles/{id}', function($articleId) {
 Route::get('/user/{name?}', function ($name='John') {
     return 'Nama saya '.$name;
 });
+
+Route::resource('photos', PhotoController::class)->only([
+    'index', 'show'
+]);
+
+Route::resource('photos', PhotoController::class)->except([
+    'create', 'store', 'update', 'destroy'
+]);
